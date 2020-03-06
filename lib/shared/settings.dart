@@ -1,9 +1,15 @@
+import 'dart:io';
+import 'dart:async';
 import 'package:cd/modal/user.dart';
 import 'package:cd/services/Database.dart';
 import 'package:cd/shared/decoration.dart';
 import 'package:cd/shared/loading.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:path/path.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -63,9 +69,39 @@ class _SettingsState extends State<Settings> {
       });
     }
     final user = Provider.of<User>(context);
+    File sampleImage;
     return StreamBuilder<UserName>(
         stream: DatabaseServices(uid: user.uid).userName,
         builder: (context, snapshot) {
+          Future getImage() async {
+            var tempImage =
+                await ImagePicker.pickImage(source: ImageSource.gallery);
+            setState(() {
+              sampleImage = tempImage;
+            });
+            String nameofPhoto = basename(sampleImage.path);
+            final StorageReference firebaseStorageRef = await FirebaseStorage
+                .instance
+                .ref()
+                .child('profilepics/${nameofPhoto}.jpg');
+            final StorageUploadTask task =
+                await firebaseStorageRef.putFile(sampleImage);
+
+            StorageTaskSnapshot taskSnapshot = await task.onComplete;
+            String downloadUri = await taskSnapshot.ref.getDownloadURL();
+            //updating the data
+            var now = DateTime.now();
+            UserName user = snapshot.data;
+            await DatabaseServices(uid: user.uid).updateUserData(
+                name ?? user.name,
+                user.email,
+                downloadUri,
+                DateFormat('dd-mm-yyyy').format(now),
+                _selectedStream ?? user.lastStream,
+                _selectedClass ?? user.lastClass,
+                _interest ?? user.interest);
+          }
+
           if (snapshot.hasData) {
             UserName user = snapshot.data;
             return Container(
@@ -86,6 +122,14 @@ class _SettingsState extends State<Settings> {
                           ),
                           SizedBox(
                             height: 10,
+                          ),
+                          RaisedButton(
+                            onPressed: getImage,
+                            child: Text('Change DP'),
+                            color: Colors.blue,
+                          ),
+                          SizedBox(
+                            height: 20,
                           ),
                           TextFormField(
                             initialValue: user.name,
@@ -168,9 +212,9 @@ class _SettingsState extends State<Settings> {
                                         user.email,
                                         user.profilepic,
                                         user.date,
-                                        selectedStream ?? user.lastStream,
-                                        lastClass ?? user.lastClass,
-                                        interest ?? user.interest);
+                                        _selectedStream ?? user.lastStream,
+                                        _selectedClass ?? user.lastClass,
+                                        _interestField ?? user.interest);
                                 Navigator.pop(context);
                               }
                             },

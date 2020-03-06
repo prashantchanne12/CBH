@@ -1,6 +1,8 @@
 import 'package:cd/modal/details.dart';
+import 'package:cd/screens/feed.dart';
 import 'package:cd/screens/profile.dart';
 import 'package:cd/screens/timeline.dart';
+import 'package:cd/screens/uploads.dart';
 import 'package:cd/services/Database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,7 +44,7 @@ class _HomeState extends State<Home> {
       value: DatabaseServices().details,
       child: Scaffold(
         body: PageView(
-          children: <Widget>[TimeLine(), Profile()],
+          children: <Widget>[TimeLine(), Feed(), Upload(), Profile()],
           controller: pageController,
           onPageChanged: onPageChanged,
           physics: NeverScrollableScrollPhysics(),
@@ -53,13 +55,14 @@ class _HomeState extends State<Home> {
           activeColor: Theme.of(context).primaryColor,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.whatshot)),
-            BottomNavigationBarItem(icon: Icon(Icons.account_circle)),
+            BottomNavigationBarItem(icon: Icon(Icons.trending_up)),
             //BottomNavigationBarItem(icon: Icon(Icons.notifications_active)),
-//          BottomNavigationBarItem(
-//              icon: Icon(
-//            Icons.photo_camera,
-//            size: 35.0,
-//          )),
+            BottomNavigationBarItem(
+                icon: Icon(
+              Icons.photo_camera,
+              size: 35.0,
+            )),
+            BottomNavigationBarItem(icon: Icon(Icons.account_circle)),
 //          BottomNavigationBarItem(icon: Icon(Icons.search)),
           ],
         ),

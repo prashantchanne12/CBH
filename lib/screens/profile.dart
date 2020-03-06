@@ -2,8 +2,10 @@ import 'dart:io';
 import 'dart:async';
 import 'package:cd/modal/details.dart';
 import 'package:cd/modal/user.dart';
+import 'package:cd/screens/uploads.dart';
 import 'package:cd/services/Database.dart';
 import 'package:cd/services/auth.dart';
+import 'package:cd/shared/header.dart';
 import 'package:cd/shared/loading.dart';
 import 'package:cd/shared/settings.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -78,136 +80,83 @@ class _ProfileState extends State<Profile> {
 
           if (snapshot.hasData) {
             return Scaffold(
-              body: new Stack(
+              appBar: header(context, isLogout: true, titleText: "Profile"),
+              body: Column(
                 children: <Widget>[
-                  ClipPath(
-                    child: Container(color: Colors.purple.withOpacity(0.1)),
-                    clipper: getClipper(),
-                  ),
-                  Positioned(
-                    width: 350.0,
-                    top: MediaQuery.of(context).size.height / 6,
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          width: 150,
-                          height: 150,
+                  Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Container(
+                          width: 120,
+                          height: 120,
                           decoration: BoxDecoration(
-                              color: Colors.red,
+                              color: Colors.blue,
                               image: DecorationImage(
                                   image: NetworkImage(dp), fit: BoxFit.cover),
-                              borderRadius: BorderRadius.circular(0.0),
+                              borderRadius: BorderRadius.circular(60.0),
                               boxShadow: [
                                 BoxShadow(
                                     blurRadius: 7.0,
-                                    color: Colors.pink,
+                                    color: Colors.blue,
                                     spreadRadius: 0)
                               ]),
                         ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Text(
-                          name,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Mono'),
-                        ),
-                        SizedBox(
-                          height: 60.0,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                height: 35,
-                                width: 95,
-                                child: Material(
-                                  borderRadius: BorderRadius.circular(2),
-                                  shadowColor: Colors.purpleAccent,
-                                  color: Colors.pink,
-                                  elevation: 7.0,
-                                  child: GestureDetector(
-                                    onTap: getImage,
-                                    child: Center(
-                                      child: Text(
-                                        'Change Dp',
-                                        style: TextStyle(
-                                            fontFamily: 'Mono',
-                                            color: Colors.white),
-                                      ),
+                      ),
+                      SizedBox(
+                        width: 25,
+                      ),
+                      Column(
+                        children: <Widget>[
+                          Center(
+                            child: Text(
+                              name,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 24,
+                                fontFamily: "Oxanium",
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 35,
+                              width: 155,
+                              child: Material(
+                                borderRadius: BorderRadius.circular(2),
+                                color: Colors.blue,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    showEditDialog();
+                                  },
+                                  child: Center(
+                                    child: Text(
+                                      'Edit Name',
+                                      style: TextStyle(
+                                          fontFamily: 'Mono',
+                                          color: Colors.white),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                height: 35,
-                                width: 95,
-                                child: Material(
-                                  borderRadius: BorderRadius.circular(2),
-                                  shadowColor: Colors.redAccent,
-                                  color: Colors.pink,
-                                  elevation: 7.0,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      showEditDialog();
-                                    },
-                                    child: Center(
-                                      child: Text(
-                                        'Edit Profile',
-                                        style: TextStyle(
-                                            fontFamily: 'Mono',
-                                            color: Colors.white),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                height: 35,
-                                width: 95,
-                                child: Material(
-                                  borderRadius: BorderRadius.circular(2),
-                                  shadowColor: Colors.redAccent,
-                                  color: Colors.pink,
-                                  elevation: 7.0,
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      _auth.signOut();
-                                    },
-                                    child: Center(
-                                      child: Text(
-                                        'Logout',
-                                        style: TextStyle(
-                                            fontFamily: 'Mono',
-                                            color: Colors.white),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  )
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    height: 20,
+                    indent: 10,
+                    endIndent: 10,
+                    thickness: 0.5,
+                    color: Colors.blueGrey,
+                  ),
                 ],
               ),
             );

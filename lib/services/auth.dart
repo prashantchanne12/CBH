@@ -48,6 +48,16 @@ class AuthServices {
     }
   }
 
+  Future getCurrentUser() async {
+    FirebaseUser user = await _auth.currentUser();
+    return user;
+  }
+
+  getAnonymousUser() async {
+    FirebaseUser user = await _auth.currentUser();
+    return user.isAnonymous;
+  }
+
   Future userLoginWithEmailAndPassword(String email, String password) async {
     try {
       AuthResult result = await _auth.signInWithEmailAndPassword(
