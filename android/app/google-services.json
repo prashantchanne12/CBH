@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "165554249254",
+    "firebase_url": "https://carrbuddy.firebaseio.com",
+    "project_id": "carrbuddy",
+    "storage_bucket": "carrbuddy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165554249254:android:7411dbad41c1ecd3df10e7",
+        "android_client_info": {
+          "package_name": "com.prashantchanne.cd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165554249254-tbpdnmjhe6hg7i0t9n5ngq0ltlttvodf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZpXJeYBj3TfEj0WAiViSm0xHA71UiVMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165554249254-tbpdnmjhe6hg7i0t9n5ngq0ltlttvodf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
