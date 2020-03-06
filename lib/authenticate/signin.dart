@@ -22,7 +22,6 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
-            resizeToAvoidBottomPadding: false,
             body: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.all(14.0),

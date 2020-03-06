@@ -13,7 +13,7 @@ header(context,
       isAppTitle ? 'Career Buddy' : titleText,
       style: TextStyle(
           fontFamily: 'Oxanium',
-          fontSize: isAppTitle ? 35 : 22,
+          fontSize: isAppTitle ? 30 : 22,
           color: Colors.white),
     ),
     actions: <Widget>[
