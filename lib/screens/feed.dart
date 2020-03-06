@@ -1,6 +1,8 @@
 import 'package:cd/modal/details.dart';
 import 'package:cd/modal/user.dart';
+import 'package:cd/screens/feed_details.dart';
 import 'package:cd/services/Database.dart';
+import 'package:cd/shared/header.dart';
 import 'package:cd/shared/loading.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -37,9 +39,24 @@ class _FeedState extends State<Feed> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Scaffold(
-              appBar: AppBar(
-                title: Text('Group 1'),
-                backgroundColor: Colors.purpleAccent,
+              appBar: PreferredSize(
+                preferredSize: Size.fromHeight(55.0),
+                child: AppBar(
+                  leading: null,
+                  elevation: 2.0,
+                  automaticallyImplyLeading: false,
+                  backgroundColor: Colors.blue[700],
+                  centerTitle: true,
+                  title: Text(
+                    'Trending ⚡',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22.0,
+                      fontFamily: 'Lato',
+                      letterSpacing: 2.0,
+                    ),
+                  ),
+                ),
               ),
               body: SafeArea(
                 child: Column(
@@ -110,22 +127,92 @@ class Message extends StatelessWidget {
         crossAxisAlignment:
             me ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
-          Card(
-            child: ListTile(
-              leading: CircleAvatar(backgroundImage: NetworkImage(userPic)),
-              title: Text(title),
-              subtitle: Text(description),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15.0,
+                    ),
+                    child: GestureDetector(
+                      onTap: () =>
+                          // goto next page
+                          Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FeedDetails(
+                            me: me,
+                            name: name,
+                            title: title,
+                            description: description,
+                            date: date,
+                            location: location,
+                            userPic: userPic,
+                          ),
+                        ),
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.all(0.0),
+                            child: Container(
+                              margin: EdgeInsets.all(16.0),
+                              child: Container(
+                                height: 80.0,
+                                width: 80.0,
+                                child: ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  child: Image.network(
+                                    userPic,
+                                    height: 100,
+                                    width: 100,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    title,
+                                    style: TextStyle(
+                                      fontFamily: 'Lato',
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.blue[800],
+                                    ),
+                                  ),
+                                  Padding(padding: const EdgeInsets.all(2.0)),
+                                  Text(
+                                    description.substring(0, 80) + '...',
+                                    style: new TextStyle(
+                                        fontFamily: 'Lato',
+                                        color: Colors.black,
+                                        fontSize: 16.0),
+                                  ),
+                                ],
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Divider(
+                    color: Colors.pink[40],
+                  ),
+                ],
+              ),
             ),
           )
-//          Material(
-//            color: me ? Colors.white : Colors.pink,
-//            borderRadius: BorderRadius.circular(10),
-//            elevation: 6,
-//            child: Container(
-//              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-//              child: Text(description),
-//            ),
-//          ),
         ],
       ),
     );
