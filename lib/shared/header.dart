@@ -3,16 +3,19 @@ import 'package:flutter/material.dart';
 
 final AuthServices _auth = AuthServices();
 
-header(context,
-    {bool isAppTitle = false,
-    String titleText,
-    removeback = false,
-    isLogout = false}) {
+header(
+  context, {
+  bool isAppTitle = false,
+  String titleText,
+  removeback = false,
+  isLogout = false,
+  isCenter = true,
+}) {
   return AppBar(
     title: Text(
       isAppTitle ? 'Career Buddy' : titleText,
       style: TextStyle(
-          fontFamily: 'Oxanium',
+          fontFamily: 'Lato',
           fontSize: isAppTitle ? 30 : 22,
           color: Colors.white),
     ),
@@ -27,7 +30,7 @@ header(context,
           : Text(''),
     ],
     automaticallyImplyLeading: removeback ? false : true,
-    centerTitle: true,
-    backgroundColor: Theme.of(context).accentColor,
+    centerTitle: isCenter ? true : false,
+    backgroundColor: Colors.blue[700],
   );
 }

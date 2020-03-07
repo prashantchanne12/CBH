@@ -32,6 +32,18 @@
       "languageVersion": "1.0"
     },
     {
+      "name": "charts_common",
+      "rootUri": "file:///C:/Users/prash/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/charts_common-0.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
+    },
+    {
+      "name": "charts_flutter",
+      "rootUri": "file:///C:/Users/prash/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/charts_flutter-0.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "1.23"
+    },
+    {
       "name": "cloud_firestore",
       "rootUri": "file:///C:/Users/prash/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/cloud_firestore-0.13.4",
       "packageUri": "lib/",
@@ -146,6 +158,12 @@
       "languageVersion": "1.20"
     },
     {
+      "name": "flutter_page_indicator",
+      "rootUri": "file:///C:/Users/prash/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/flutter_page_indicator-0.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "flutter_plugin_android_lifecycle",
       "rootUri": "file:///C:/Users/prash/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-1.0.6",
       "packageUri": "lib/",
@@ -156,6 +174,12 @@
       "rootUri": "file:///C:/Users/prash/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.5"
+    },
+    {
+      "name": "flutter_swiper",
+      "rootUri": "file:///C:/Users/prash/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/flutter_swiper-1.1.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
     },
     {
       "name": "flutter_test",
@@ -212,6 +236,12 @@
       "languageVersion": "1.19"
     },
     {
+      "name": "logging",
+      "rootUri": "file:///C:/Users/prash/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/logging-0.11.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "matcher",
       "rootUri": "file:///C:/Users/prash/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/matcher-0.12.6",
       "packageUri": "lib/",
@@ -260,6 +290,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "rflutter_alert",
+      "rootUri": "file:///C:/Users/prash/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/rflutter_alert-1.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///D:/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -302,6 +338,12 @@
       "languageVersion": "2.2"
     },
     {
+      "name": "transformer_page_view",
+      "rootUri": "file:///C:/Users/prash/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/transformer_page_view-0.1.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "typed_data",
       "rootUri": "file:///C:/Users/prash/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/typed_data-1.1.6",
       "packageUri": "lib/",
@@ -326,7 +368,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2020-03-06T11:09:31.926387Z",
+  "generated": "2020-03-07T04:49:47.157619Z",
   "generator": "pub",
   "generatorVersion": "2.8.0-dev.5.0.flutter-fc3af737c7"
 }

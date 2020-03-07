@@ -28,6 +28,7 @@ class _SettingsState extends State<Settings> {
   String _interestField;
   String _selectedStream;
   bool HSC = false;
+  String dp;
   @override
   Widget build(BuildContext context) {
     List<String> _interest = [];
@@ -89,6 +90,7 @@ class _SettingsState extends State<Settings> {
 
             StorageTaskSnapshot taskSnapshot = await task.onComplete;
             String downloadUri = await taskSnapshot.ref.getDownloadURL();
+            dp = downloadUri;
             //updating the data
             var now = DateTime.now();
             UserName user = snapshot.data;
@@ -210,7 +212,7 @@ class _SettingsState extends State<Settings> {
                                     .updateUserData(
                                         name ?? user.name,
                                         user.email,
-                                        user.profilepic,
+                                        dp ?? user.profilepic,
                                         user.date,
                                         _selectedStream ?? user.lastStream,
                                         _selectedClass ?? user.lastClass,

@@ -1,4 +1,5 @@
 import 'package:cd/modal/details.dart';
+import 'package:cd/screens/chat.dart';
 import 'package:cd/screens/feed.dart';
 import 'package:cd/screens/profile.dart';
 import 'package:cd/screens/timeline.dart';
@@ -44,7 +45,7 @@ class _HomeState extends State<Home> {
       value: DatabaseServices().details,
       child: Scaffold(
         body: PageView(
-          children: <Widget>[TimeLine(), Feed(), Upload(), Profile()],
+          children: <Widget>[TimeLine(), Feed(), Chat(), Profile()],
           controller: pageController,
           onPageChanged: onPageChanged,
           physics: NeverScrollableScrollPhysics(),
@@ -59,7 +60,7 @@ class _HomeState extends State<Home> {
             //BottomNavigationBarItem(icon: Icon(Icons.notifications_active)),
             BottomNavigationBarItem(
                 icon: Icon(
-              Icons.photo_camera,
+              Icons.chat_bubble_outline,
               size: 35.0,
             )),
             BottomNavigationBarItem(icon: Icon(Icons.account_circle)),

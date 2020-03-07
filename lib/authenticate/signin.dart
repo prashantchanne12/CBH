@@ -165,6 +165,15 @@ class _SignInState extends State<SignIn> {
                           SizedBox(
                             height: 15.0,
                           ),
+                          Center(
+                            child: Text(
+                              error,
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
                           Padding(
                             padding: EdgeInsets.only(top: 50.0),
                             child: Row(

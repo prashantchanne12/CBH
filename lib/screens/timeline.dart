@@ -1,5 +1,8 @@
 import 'package:cd/modal/details.dart';
 import 'package:cd/modal/user.dart';
+import 'package:cd/screens/displaycourse.dart';
+import 'package:cd/services/Database.dart';
+import 'package:cd/shared/header.dart';
 import 'package:cd/shared/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,14 +13,8 @@ class TimeLine extends StatefulWidget {
   _TimeLineState createState() => _TimeLineState();
 }
 
-final CollectionReference usersRef = Firestore.instance
-    .collection('HSC')
-    .document()
-    .collection('science')
-    .document()
-    .collection('BPHARMACY');
-
 class _TimeLineState extends State<TimeLine> {
+  List data;
   String name;
   String dp;
   String lastClass;
@@ -39,43 +36,86 @@ class _TimeLineState extends State<TimeLine> {
         });
       }
     });
-    return StreamBuilder(
-        stream: usersRef.snapshots(),
+
+    // if(hseStream=="Science" && interest=="BPHARMACY"){
+    //     //data=Firestore.instance.collection('BPHARMACY').snapshots();
+    // }
+
+    return StreamBuilder<UserName>(
+        stream: DatabaseServices(uid: user.uid).userName,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            List<Comment> comments = [];
-            snapshot.data.documents.forEach((doc) {
-              comments.add(Comment.fromDocument(doc));
-            });
-            return ListView(children: comments);
+            return Scaffold(
+              appBar: header(context, titleText: "CBH  ✔", isCenter: false),
+              body: StreamBuilder(
+                  stream: Firestore.instance
+                      .collection('content')
+                      .document(interest)
+                      .snapshots(),
+                  //print an integer every 2secs, 10 times
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return Loading();
+                    }
+                    var userDocument = snapshot.data;
+                    return ListView.builder(
+                      itemCount: 1,
+                      itemBuilder: (context, index) {
+                        return Column(children: <Widget>[
+                          Card(
+                            child: InkWell(
+                              onTap: () async {
+                                //Navigator.push(context,MaterialPageRoute(builder: (context) => coursepage(text: "commerce")));
+                              },
+                              child: new Container(
+                                padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                width: double.maxFinite,
+                                child: Column(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 20, 0, 20),
+                                      child: Center(
+                                        child: Text(
+                                          userDocument['name'],
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 24.0,
+                                              fontFamily: "Lato",
+                                              color: Colors.blue[900]),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 15.0),
+                                      child: Center(
+                                        child: Text(
+                                          userDocument['data'],
+                                          style: TextStyle(
+                                            fontSize: 17.0,
+                                            fontFamily: "Lato",
+                                            height: 1.5,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            elevation: 1,
+                          ),
+                          displaycourse()
+                        ]);
+                        // Text(userDocument['data']);
+                      },
+                    );
+                  }),
+            );
           } else {
             return Loading();
           }
         });
-  }
-}
-
-class Comment extends StatelessWidget {
-  final String data;
-
-  Comment({this.data});
-  factory Comment.fromDocument(DocumentSnapshot doc) {
-    return Comment(
-      data: doc['data'],
-    );
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        ListTile(
-          title: Text(data),
-//          leading: CircleAvatar(
-//            backgroundImage: NetworkImage(avatarUrl),
-//          ),
-//          subtitle: Text(timeago.format(timestamp.toDate())),
-        )
-      ],
-    );
   }
 }
