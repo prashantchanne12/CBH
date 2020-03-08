@@ -4,6 +4,7 @@ Problem Statement - The syllogistic figure of one's career is one of most import
 
 ## Team
 @mrpandey1
+@ gaurangkeluskar22
 
 
 ## Getting Started
