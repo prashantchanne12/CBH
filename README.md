@@ -9,9 +9,9 @@ The syllogistic figure of one's career is one of most important factors which de
 
 ![GitHub Logo](https://github.com/121loganpaul/images/blob/master/cbh.gif?raw=true)
 
+---
 
 ## Team
----
 @mrpandey1
 @gaurangkeluskar22
 
